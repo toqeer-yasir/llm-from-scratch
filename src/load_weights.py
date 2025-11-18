@@ -3,14 +3,14 @@ import torch.nn as nn
 
 from settings_and_params import gpt2_settings_and_params
 
-settings, params = gpt2_settings_and_params('gpt2/124M')
+settings, params = gpt2_settings_and_params('gpt2/355M')
 
 CONFIG = {
 "vocab_size": 50257,
 "context_length": 1024,
-"emb_dim": 764,
-"n_heads": 12,
-"n_layers": 12,
+"emb_dim": 1024,
+"n_heads": 16,
+"n_layers": 24,
 "drop_rate": 0.1,
 "qkv_bias": True
 }

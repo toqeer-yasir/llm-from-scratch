@@ -5,12 +5,11 @@ import os
 
 class TiktokenTokenizer(PreTrainedTokenizer):
     def __init__(self, encoding_name="gpt2", **kwargs):
-        # Initialize the encoder first
+
         self.encoder = tiktoken.get_encoding(encoding_name)
         self._vocab_size = self.encoder.n_vocab
         self.encoding_name = encoding_name
         
-        # Set special tokens
         kwargs.update({
             "bos_token": "<|endoftext|>",
             "eos_token": "<|endoftext|>", 
@@ -18,17 +17,15 @@ class TiktokenTokenizer(PreTrainedTokenizer):
             "unk_token": "<|endoftext|>",
         })
         
-        # Call parent initialization
         super().__init__(**kwargs)
-        
-        # Set token IDs
+
         try:
             self.bos_token_id = self.encoder.encode_single_token("<|endoftext|>")
             self.eos_token_id = self.encoder.encode_single_token("<|endoftext|>")
             self.pad_token_id = self.encoder.encode_single_token("<|endoftext|>")
             self.unk_token_id = self.encoder.encode_single_token("<|endoftext|>")
         except:
-            # Fallback for GPT-2 tokenizer
+ 
             self.bos_token_id = 50256
             self.eos_token_id = 50256
             self.pad_token_id = 50256
